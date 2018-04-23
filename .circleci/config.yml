@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: python:latest
+    steps:
+      - checkout
+      - run:
+          name: Download Genesis
+          command: cd /tmp && wget https://s3.amazonaws.com/firstdraftgis/genesis.tsv.zip
+      - run:
+          name: Unzip Genesis
+          command: cd /tmp && unzip genesis.tsv.zip
+      - run:
+          name: Create Cooccurrences
+          command: python3 create_cooccurrences.py
+          no_output_timeout: 1h
+      - run:
+          name: Run Tests
+          command: python3 test.py
+      - run:
+          name: Install AWS CLI
+          command: pip install awscli --upgrade
+      - run:
+          name: Zip Results
+          command: cd /tmp && zip -r cooccurrences.pickle.zip cooccurrences.pickle
+          no_output_timeout: 1h
+      - run:
+          name: Upload to S3
+          command: aws s3 cp /tmp/cooccurrences.pickle.zip s3://firstdraftgis/cooccurrences.pickle.zip
