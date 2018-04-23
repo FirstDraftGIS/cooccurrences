@@ -30,3 +30,14 @@ a, b = two_random_keys
 count = cooccurrences[two_random_keys]
 print(a + " and " + b + " appear together " + str(count) + " times.")
 ```
+
+# Useful for Machine Learning
+You can use this data to decide what cooccurrence of places makes the most sense.  For example:
+
+| a          | b                    | count |
+| ---------- | -------------------- | ----- |
+| Azerbaijan | Georgia (country)    | 2033  |
+| Azerbaijan | Georgia (U.S. state) | 101   |
+
+# Contact
+daniel.j.dufour@gmail.com
