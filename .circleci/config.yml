@@ -4,6 +4,9 @@ jobs:
     docker:
       - image: python:latest
     steps:
+      - run:
+          name: Install System Dependencies
+          command: apt-get install -y unzip zip    
       - checkout
       - run:
           name: Download Genesis
