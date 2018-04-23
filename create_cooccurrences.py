@@ -23,11 +23,10 @@ with open(path_to_genesis) as f:
     
         counter.update(list(combinations(sorted(titles.split(";")), 2)))
 
-        if line_count % 1e3 == 0:
+        if line_count % 1e6 == 0:
             print("pruning counter")
             counter = prune(counter, max_key_count)
             print("pruned")
-            break
 
 counter = prune(counter, max_key_count)
 
