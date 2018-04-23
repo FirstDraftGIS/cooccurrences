@@ -3,11 +3,14 @@ jobs:
   build:
     docker:
       - image: python:latest
-    steps:
+    steps: 
+      - checkout
+      - run:
+          name: Update Package Lists
+          command: apt-get update -qq
       - run:
           name: Install System Dependencies
-          command: apt-get install -y unzip zip    
-      - checkout
+          command: apt-get install -y unzip zip
       - run:
           name: Download Genesis
           command: cd /tmp && wget https://s3.amazonaws.com/firstdraftgis/genesis.tsv.zip
