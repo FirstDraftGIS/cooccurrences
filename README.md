@@ -27,7 +27,7 @@ The keys are sorted using Python's `sorted` method.  You must sort your keys bef
 
 two_random_keys.sort()
 a, b = two_random_keys
-count = cooccurrences[two_random_keys]
+count = cooccurrences[tuple(two_random_keys)]
 print(a + " and " + b + " appear together " + str(count) + " times.")
 ```
 
